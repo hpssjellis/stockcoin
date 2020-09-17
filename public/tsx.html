@@ -1,1 +1,486 @@
-asr
+<body onload="{
+   myStorage = localStorage.getItem('myStoredText')
+  // alert(myStorage )
+   if(myStorage  != null){
+      document.getElementById('myCount').value = myStorage 
+    }
+    
+    for (myLoop1=1; myLoop1 <= myStorage; myLoop1++ ){
+        makeNew(myLoop1)
+    }
+     
+    // alert('Loading data')   
+    for (myLoop1=1; myLoop1 <= myStorage; myLoop1++ ){
+        myName = 'myA' + myLoop1
+        
+        myStoreWidth = myName+'Width'
+        myStoreHeight = myName+'Height'
+        myStoreFont = myName+'Font'
+        
+        document.getElementById(myName).style.width = localStorage.getItem(myStoreWidth)
+        document.getElementById(myName).style.fontSize = localStorage.getItem(myStoreFont)
+        document.getElementById(myName).style.height = localStorage.getItem(myStoreHeight)
+        document.getElementById(myName).value = localStorage.getItem(myName)
+    }
+       
+    
+}">
+
+<body onunload="{
+
+     myStuff = document.getElementById('myCount').value
+    localStorage.setItem('myStoredText', document.getElementById('myCount').value)
+   // alert(myStuff)
+    for (myLoop1=1; myLoop1 <= myStuff; myLoop1++ ){
+
+        myName = 'myA' + myLoop1
+        myStoreWidth = myName+'Width'
+        myStoreHeight = myName+'Height'
+        myStoreFont = myName+'Font'
+        
+        localStorage.setItem(myName, document.getElementById(myName).value)
+        localStorage.setItem(myStoreWidth, document.getElementById(myName).style.width)
+        localStorage.setItem(myStoreHeight, document.getElementById(myName).style.height)
+        localStorage.setItem(myStoreFont, document.getElementById(myName).style.fontSize)
+    }
+    //alert('all saved')  
+}">   
+
+
+
+
+
+<br><br><br>
+<h2 align=center>A Web App List that is remembered by your computer or mobile phone</h2>
+
+<input type=button  value="Font Resize" style="width:20%" onmousemove="myResizeFont(event)">
+
+<br><br>
+<input type=button value="Store Text" onclick="{
+    myStuff = document.getElementById('myCount').value
+    localStorage.setItem('myStoredText', document.getElementById('myCount').value)
+   // alert(myStuff)
+    for (myLoop1=1; myLoop1 <= myStuff; myLoop1++ ){
+
+        myName = 'myA' + myLoop1
+        myStoreWidth = myName+'Width'
+        myStoreHeight = myName+'Height'
+        myStoreFont = myName+'Font'
+        
+        localStorage.setItem(myName, document.getElementById(myName).value)
+        localStorage.setItem(myStoreWidth, document.getElementById(myName).style.width)
+        localStorage.setItem(myStoreHeight, document.getElementById(myName).style.height)
+        localStorage.setItem(myStoreFont, document.getElementById(myName).style.fontSize)
+    }
+    alert('all saved')
+    
+}">
+
+
+
+
+
+
+
+
+
+<script>
+
+//document.addEventListener('touchmove', function(e) {
+    
+  //   if (     document.myLastName  != ''){
+    
+   //  	e.preventDefault();
+   //  }
+	
+	
+//}, false);
+
+
+
+function  myResizeFont(event2){
+
+    myStuff = document.getElementById('myCount').value
+  
+  
+  
+  
+      for (myLoop1=1; myLoop1 <= myStuff; myLoop1++ ){
+
+        myName = 'myA' + myLoop1
+        
+        
+        document.getElementById(myName).style.fontSize = event2.clientX/3+'px';
+  
+        document.myResizeAmount = event2.clientX/3+'px';
+        
+    }
+  
+}
+
+
+    
+function makeNew(myCountOut){
+    
+    
+    /*
+    
+   document.getElementById('myDiv1').innerHTML += "<textarea id='myA"+
+   myCountOut+"'></textarea>..."+
+   "<input id='myButton"+myCountOut+"' type=button value='x"+
+   myCountOut+"' onclick='{myRemove("+myCountOut+")}'><br><br> "
+  */
+      
+    
+   document.getElementById('myDiv1').innerHTML += "<table style='border-collapse: collapse;' onmouseup={myCheckUp('myA"+myCountOut+"')}  id='myTable"+myCountOut+"' border=1><tr><td><input  id='myButton"+myCountOut+"' type=button value='x"+
+   myCountOut+"' onclick='{myRemove("+myCountOut+")}'>"+
+   "<br><br><input type=button value=' + ' onclick={myPlus('myA"+myCountOut+"','"+myCountOut+"')}><br><input type=button value=move onmousedown={myGo('myA"+myCountOut+"')}><br><input type=button value=' - ' onclick={myMinus('myA"+myCountOut+"','"+myCountOut+"')}><br><br><input type=Button value=reset onclick={myResetMe('myA"+myCountOut+"')}></td>"+
+   "<td><textarea  onkeyup={myDoText('myA"+myCountOut+"')} id='myA"+ myCountOut+"'></textarea>..."+
+   "</td></tr></table><br>"
+  
+  
+  
+  //onmouseup='myCheckUp()'
+  
+  
+  
+ }
+         
+  document.myLastName = ''   //preset to null
+  //document.myLastButton = ''
+  
+  
+  
+  function myPlus(myObjectName,myNum){
+      myGo(myObjectName)
+      var myNextName = 'myA'+(myNum*1-1)
+      myCheckUp(myNextName)
+  }
+  
+   
+  function myMinus(myObjectName,myNum){
+      myGo(myObjectName)
+      var myNextName = 'myA'+(myNum*1+1)
+      myCheckUp(myNextName)
+  }
+   
+  
+ function myCheckUp(myName5){
+     
+     if (     document.myLastName  != '' ){
+         
+        var tempName   = document.getElementById(myName5).value
+        var tempWidth  = document.getElementById(myName5).style.width 
+        var tempHeight = document.getElementById(myName5).style.height
+        var tempFont   = document.getElementById(myName5).style.fontSize
+        
+        
+        
+        
+        
+        
+      
+        myName = myName5
+        myStoreWidth = myName+'Width'
+        myStoreHeight = myName+'Height'
+        myStoreFont = myName+'Font'
+        
+        localStorage.setItem(myName, document.getElementById(document.myLastName).value)
+        localStorage.setItem(myStoreWidth, document.getElementById(document.myLastName).style.width)
+        localStorage.setItem(myStoreHeight, document.getElementById(document.myLastName).style.height)
+        localStorage.setItem(myStoreFont, document.getElementById(document.myLastName).style.fontSize)   
+        
+        document.getElementById(myName5).value = document.getElementById(document.myLastName).value
+        document.getElementById(myName5).style.width = document.getElementById(document.myLastName).style.width 
+        document.getElementById(myName5).style.height = document.getElementById(document.myLastName).style.height
+        document.getElementById(myName5).style.fontsize = document.getElementById(document.myLastName).style.fontsize
+              
+         
+         
+         
+          
+        
+      
+        myName = document.myLastName
+        myStoreWidth = myName+'Width'
+        myStoreHeight = myName+'Height'
+        myStoreFont = myName+'Font'
+        
+        localStorage.setItem(myName, tempName)
+        localStorage.setItem(myStoreWidth, tempWidth)
+        localStorage.setItem(myStoreHeight, tempHeight)
+        localStorage.setItem(myStoreFont, tempFont)   
+         
+        document.getElementById(document.myLastName).value = tempName 
+        document.getElementById(document.myLastName).style.width= tempWidth
+        document.getElementById(document.myLastName).style.height = tempHeight 
+        document.getElementById(document.myLastName).style.fontsize = tempFont 
+             
+         
+         
+        // alert('Location '+document.myLastName+', Moved to location '+myName5)
+         document.myLastName = ''
+         
+         
+     } else
+     {  //alert('null')
+
+     }
+     
+     
+
+     
+ }
+  
+  
+  
+  
+ function myDoText(myName4){  // if mouse is down and dragged
+    localStorage.setItem(myName4, document.getElementById(myName4).value)
+     
+    // alert(myName4)
+ }
+ 
+ function myGo(myName3){
+     
+     document.myLastName = myName3
+    // document.myLastButton = 'myGo'
+    // alert(myName3)
+ }
+   
+function myResetMe(myName2){
+       
+           // alert(myName2)
+        document.getElementById(myName2).style.width = '300px'
+        document.getElementById(myName2).style.height = '140px'
+        document.getElementById(myName2).style.fontSize = document.myResizeAmount
+       
+}
+   
+function myRemove(myNum){
+    
+    myMain = document.getElementById('myCount').value * 1
+    myDelete = myMain+1
+    
+
+    
+    myMain --;
+    document.getElementById('myCount').value = myMain
+    
+    //alert(myMain)
+    //alert(myDelete)
+    //alert(myMain)
+    
+    for (myLoop1=myNum; myLoop1 <= myMain; myLoop1++ ){
+        myNameNew = 'myA' + myLoop1
+        myNameOld = 'myA' + (myLoop1+1)
+        //alert(myNameNew+', '+myNameOld)
+        document.getElementById(myNameNew).value = document.getElementById(myNameOld).value
+        document.getElementById(myNameNew).style.width = document.getElementById(myNameOld).style.width
+        document.getElementById(myNameNew).style.height = document.getElementById(myNameOld).style.height 
+        document.getElementById(myNameNew).style.fontSize = document.getElementById(myNameOld).style.fontSize
+    
+    } 
+        
+        
+       
+    myE = myMain*1 +1           
+    myB =     'myA'+myE
+    myC =     'myButton'+ myE
+    myD =     'myTable'+ myE
+
+
+     //alert(myMain)   
+    //alert(document.getElementById(myB).value) 
+    
+    var one = document.getElementById('myDiv1');
+    var two = document.getElementById(myD);
+   // var three = document.getElementById(myC);
+    one.removeChild(two);    
+  //  one.removeChild(three); 
+        
+
+    //alert(document.getElementById(myB).value)     
+        
+    
+    
+    
+   /* 
+    
+    
+    
+    for (myLoop1=1; myLoop1 <= myMain; myLoop1++ ){
+        myName = 'myA' + myLoop1
+        document.getElementById(myName).value = localStorage.getItem(myName)
+    } 
+    
+    */
+    
+    
+    // clean up higher numbers
+    
+    
+}   
+   
+   
+   
+   
+   
+</script>
+
+
+
+<div id="myDiv1" ></div>
+
+<br><br><br><br>
+<input type=hidden value=0 id="myCount" size=3>
+
+
+<input type=button value="Add" id="myBigAdd" onclick="{
+
+    myStuff2 = document.getElementById('myCount').value
+
+
+   document.all.myCount.value = 1 + (document.all.myCount.value*1)
+   makeNew(document.all.myCount.value);
+     
+    // alert('Loading data')   
+    for (myLoop1=1; myLoop1 <= myStuff2; myLoop1++ ){
+        myName = 'myA' + myLoop1
+        document.getElementById(myName).value = localStorage.getItem(myName)
+       //alert('document.getElementById('+myName+').value = localStorage.getItem(myName)')
+    }
+
+
+}">....
+
+
+
+
+
+
+<input type=button value="Store Text" onclick="{
+    myStuff = document.getElementById('myCount').value
+    localStorage.setItem('myStoredText', document.getElementById('myCount').value)
+   // alert(myStuff)
+    for (myLoop1=1; myLoop1 <= myStuff; myLoop1++ ){
+
+        myName = 'myA' + myLoop1
+        myStoreWidth = myName+'Width'
+        myStoreHeight = myName+'Height'
+        myStoreFont = myName+'Font'
+        
+        localStorage.setItem(myName, document.getElementById(myName).value)
+        localStorage.setItem(myStoreWidth, document.getElementById(myName).style.width)
+        localStorage.setItem(myStoreHeight, document.getElementById(myName).style.height)
+        localStorage.setItem(myStoreFont, document.getElementById(myName).style.fontSize)
+    }
+    alert('all saved')
+    
+}">.....
+
+
+
+
+
+
+
+
+
+<input type=button value="Export" onclick="{
+
+    myStuff = document.getElementById('myCount').value
+
+    for (myLoop1=1; myLoop1 <= myStuff; myLoop1++ ){
+
+        myName = 'myA' + myLoop1
+        myStoreWidth = myName+'Width'
+        myStoreHeight = myName+'Height'
+        myStoreFont = myName+'Font'
+
+        document.all.myInOut.value += document.getElementById(myName).value+'@@@\n'
+
+    }
+
+      
+  
+  
+}">.......
+
+
+
+
+<input type=button value="Import"  onclick="{
+
+   //make new boxes if needed
+   var myInsertMe = document.getElementById('myInsert').value*1
+
+   var myStuff8 = document.getElementById('myCount').value  // present boxes
+
+   var myCount8 = (document.all.myInOut.value.match(/@@@/g) || []).length; // new boxes
+   
+   var myStartSpot = myStuff8*1 + myInsertMe*1
+   var myEndSpot = myCount8*1 - 1 + myInsertMe*1
+  // alert(myStuff8+', '+myStartSpot+', '+myEndSpot)
+   
+   
+   
+   for (myLoop3 = 1; myLoop3 <= myCount8; myLoop3 ++){
+       document.all.myBigAdd.click();
+      
+   }
+
+
+   document.myArrayURL = document.all.myInOut.value.split('@@@\n') // array to import
+
+
+
+  //alert(document.myArrayURL.length)
+    document.mySub = 0
+    var myLastLength = document.myArrayURL.length + myCount8
+
+    //alert(myInsertMe+', '+myLastLength)
+   
+    for (myClassCount = myInsertMe; myClassCount <= myLastLength;  myClassCount++){  
+    
+           
+          bigTemp = document.myArrayURL[myClassCount-myInsertMe].replace('@@@','')   
+
+               document.all['myA'+(myClassCount+1)].value = bigTemp   
+
+          
+    }
+
+    //alert('You will have to add enough fields for this to work')
+}"> 
+
+Import after Box #<input id="myInsert" type=text value=0 size=5>
+
+
+<br>
+
+
+
+
+
+
+<textarea id="myInOut" rows=30 cols=70></textarea>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br>
